@@ -36,8 +36,6 @@ namespace GettingStartedWebClient.Controllers
 
         // Complete equation
         _client.Clear();
-
-        //Thread.Sleep(10000); //todo this ought to be better
         
         return Ok("process completed, check Debug console");
       }
