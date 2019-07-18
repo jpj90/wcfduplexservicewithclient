@@ -12,91 +12,116 @@ namespace GettingStartedWebClient.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Microsoft.ServiceModel.Samples", ConfigurationName="ServiceReference1.ICalculator")]
-    public interface ICalculator {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Microsoft.ServiceModel.Samples", ConfigurationName="ServiceReference1.ICalculatorDuplex", CallbackContract=typeof(GettingStartedWebClient.ServiceReference1.ICalculatorDuplexCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    public interface ICalculatorDuplex {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Add", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/AddResponse")]
-        double Add(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/Clear")]
+        void Clear();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Add", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/AddResponse")]
-        System.Threading.Tasks.Task<double> AddAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/Clear")]
+        System.Threading.Tasks.Task ClearAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Subtract", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/SubtractResponse")]
-        double Subtract(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/AddTo")]
+        void AddTo(double n);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Subtract", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/SubtractResponse")]
-        System.Threading.Tasks.Task<double> SubtractAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/AddTo")]
+        System.Threading.Tasks.Task AddToAsync(double n);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Multiply", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/MultiplyResponse")]
-        double Multiply(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/SubtractFrom")]
+        void SubtractFrom(double n);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Multiply", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/MultiplyResponse")]
-        System.Threading.Tasks.Task<double> MultiplyAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/SubtractFrom")]
+        System.Threading.Tasks.Task SubtractFromAsync(double n);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Divide", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/DivideResponse")]
-        double Divide(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/MultiplyBy")]
+        void MultiplyBy(double n);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Divide", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/DivideResponse")]
-        System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/MultiplyBy")]
+        System.Threading.Tasks.Task MultiplyByAsync(double n);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/DivideBy")]
+        void DivideBy(double n);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/DivideBy")]
+        System.Threading.Tasks.Task DivideByAsync(double n);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICalculatorChannel : GettingStartedWebClient.ServiceReference1.ICalculator, System.ServiceModel.IClientChannel {
+    public interface ICalculatorDuplexCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/Equals")]
+        void Equals(double result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculatorDuplex/Equation")]
+        void Equation(string eqn);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICalculatorDuplexChannel : GettingStartedWebClient.ServiceReference1.ICalculatorDuplex, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CalculatorClient : System.ServiceModel.ClientBase<GettingStartedWebClient.ServiceReference1.ICalculator>, GettingStartedWebClient.ServiceReference1.ICalculator {
+    public partial class CalculatorDuplexClient : System.ServiceModel.DuplexClientBase<GettingStartedWebClient.ServiceReference1.ICalculatorDuplex>, GettingStartedWebClient.ServiceReference1.ICalculatorDuplex {
         
-        public CalculatorClient() {
+        public CalculatorDuplexClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public CalculatorClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public CalculatorDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public CalculatorClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public CalculatorDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public CalculatorClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public CalculatorDuplexClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public CalculatorClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public CalculatorDuplexClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
-        public double Add(double n1, double n2) {
-            return base.Channel.Add(n1, n2);
+        public void Clear() {
+            base.Channel.Clear();
         }
         
-        public System.Threading.Tasks.Task<double> AddAsync(double n1, double n2) {
-            return base.Channel.AddAsync(n1, n2);
+        public System.Threading.Tasks.Task ClearAsync() {
+            return base.Channel.ClearAsync();
         }
         
-        public double Subtract(double n1, double n2) {
-            return base.Channel.Subtract(n1, n2);
+        public void AddTo(double n) {
+            base.Channel.AddTo(n);
         }
         
-        public System.Threading.Tasks.Task<double> SubtractAsync(double n1, double n2) {
-            return base.Channel.SubtractAsync(n1, n2);
+        public System.Threading.Tasks.Task AddToAsync(double n) {
+            return base.Channel.AddToAsync(n);
         }
         
-        public double Multiply(double n1, double n2) {
-            return base.Channel.Multiply(n1, n2);
+        public void SubtractFrom(double n) {
+            base.Channel.SubtractFrom(n);
         }
         
-        public System.Threading.Tasks.Task<double> MultiplyAsync(double n1, double n2) {
-            return base.Channel.MultiplyAsync(n1, n2);
+        public System.Threading.Tasks.Task SubtractFromAsync(double n) {
+            return base.Channel.SubtractFromAsync(n);
         }
         
-        public double Divide(double n1, double n2) {
-            return base.Channel.Divide(n1, n2);
+        public void MultiplyBy(double n) {
+            base.Channel.MultiplyBy(n);
         }
         
-        public System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2) {
-            return base.Channel.DivideAsync(n1, n2);
+        public System.Threading.Tasks.Task MultiplyByAsync(double n) {
+            return base.Channel.MultiplyByAsync(n);
+        }
+        
+        public void DivideBy(double n) {
+            base.Channel.DivideBy(n);
+        }
+        
+        public System.Threading.Tasks.Task DivideByAsync(double n) {
+            return base.Channel.DivideByAsync(n);
         }
     }
 }
