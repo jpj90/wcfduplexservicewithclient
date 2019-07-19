@@ -8,7 +8,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace GettingStartedWebClient.Implementation.SignalR
 {
-  [HubName("testhub")]
+  [HubName("mathHub")]
   public class MyHub : Hub
   {
     //required to let the Hub be called from other server-side classes/controllers
@@ -16,9 +16,8 @@ namespace GettingStartedWebClient.Implementation.SignalR
 
     public void DisplayResult(string calculatorValue) //todo remove this stuff
     {
-      var message = $">>> Value passed to hub was {calculatorValue}";
-      Debug.WriteLine(message);
-      HubContext.Clients.All.display(message);
+      Debug.WriteLine($">>> Value passed to hub was {calculatorValue}");
+      HubContext.Clients.All.display(calculatorValue);
     }
   }
 }
